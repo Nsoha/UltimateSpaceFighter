@@ -21,14 +21,15 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/editText"
         android:textAlignment="center"
-        android:textColor="?android:attr/colorMultiSelectHighlight" />
+        android:textColor="?android:attr/colorMultiSelectHighlight"
+        android:textSize="22sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="31dp"
         android:text="Ultimate Space Fighter"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="?android:attr/colorMultiSelectHighlight" />
@@ -42,19 +43,7 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="18sp" />
-
-    <Button
-        android:text="1 Player"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:elevation="14dp"
-        android:background="@android:color/holo_red_dark"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/textView2"
-        android:layout_toStartOf="@+id/textView2"
-        android:onClick="singlePlayer" />
+        android:textSize="22sp" />
 
     <Button
         android:text="2 Player"
@@ -66,4 +55,16 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textView2"
         android:layout_toEndOf="@+id/textView2" />
+
+    <Button
+        android:text="1 Player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:elevation="14dp"
+        android:background="@android:color/holo_red_dark"
+        android:onClick="singlePlayer"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/textView2"
+        android:layout_toStartOf="@+id/textView2" />
 </RelativeLayout>
