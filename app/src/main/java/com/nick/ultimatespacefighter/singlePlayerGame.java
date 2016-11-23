@@ -7,9 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -22,12 +19,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import java.sql.Array;
-import java.util.Random;
-
-import static android.R.attr.startX;
-import static android.R.attr.x;
-import static com.nick.ultimatespacefighter.R.id.canvas;
 
 public class singlePlayerGame extends AppCompatActivity implements SensorEventListener{
     private SensorManager senSensorManager;
@@ -60,9 +51,10 @@ public class singlePlayerGame extends AppCompatActivity implements SensorEventLi
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
+
 }
+
 class CustomView extends SurfaceView implements SurfaceHolder.Callback{
 
     public long startTime;

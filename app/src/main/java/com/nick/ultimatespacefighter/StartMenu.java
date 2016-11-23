@@ -18,7 +18,10 @@ public class StartMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void doublePlayer(View v) {
+        Intent intent = new Intent(this,doublePlayer.class);
+        startActivity(intent);
+    }
 
 
 
