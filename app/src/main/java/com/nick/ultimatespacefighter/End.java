@@ -1,6 +1,9 @@
 package com.nick.ultimatespacefighter;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +23,17 @@ public class End extends AppCompatActivity {
         int newScore = i.getIntExtra("int", -1);
         TextView score = (TextView) findViewById(R.id.score);
         score.setText(Integer.toString(newScore));
+
+        SharedPreferences prefs = this.getSharedPreferences("myPrefsKey", Context.MODE_PRIVATE);
+        int highScore = prefs.getInt("score", 0);
+        TextView HighScore = (TextView) findViewById(R.id.hScore);
+        if (highScore > newScore) {
+            HighScore.setText(Integer.toString(highScore));
+        } else {
+            highScore = newScore;
+            HighScore.setText(Integer.toString(highScore));
+            prefs.edit().putInt("score", highScore).apply();
+        }
 
 
 

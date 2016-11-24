@@ -39,17 +39,8 @@
         android:textSize="30sp"
         android:textColor="?android:attr/colorMultiSelectHighlight"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="Exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button7"
-        android:background="?android:attr/colorMultiSelectHighlight"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="exit" />
+        android:id="@+id/highscore" />
 
     <Button
         android:text="2 Player"
