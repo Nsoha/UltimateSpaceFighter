@@ -83,6 +83,16 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
     private Bitmap bwMothership4;
     private Bitmap mothership5;
     private Bitmap bwMothership5;
+    private Bitmap l2mothership;
+    private Bitmap bwl2Mothership;
+    private Bitmap l2mothership2;
+    private Bitmap bwl2Mothership2;
+    private Bitmap l2mothership3;
+    private Bitmap bwl2Mothership3;
+    private Bitmap l2mothership4;
+    private Bitmap bwl2Mothership4;
+    private Bitmap l2mothership5;
+    private Bitmap bwl2Mothership5;
     private Bitmap eshot;
     private Bitmap bwEshot;
     private Bitmap player;
@@ -206,6 +216,26 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
         mothership5 = BitmapFactory.decodeResource(context.getResources(),R.drawable.mothership5);
         bwMothership5=mothership5.copy(Bitmap.Config.ARGB_8888, true);
         bwMothership5 = resizeBitmap(bwMothership5,200,100);
+
+        l2mothership = BitmapFactory.decodeResource(context.getResources(),R.drawable.l2mothership);
+        bwl2Mothership=l2mothership.copy(Bitmap.Config.ARGB_8888, true);
+        bwl2Mothership = resizeBitmap(bwl2Mothership,200,100);
+
+        l2mothership2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.l2mothership2);
+        bwl2Mothership2=l2mothership2.copy(Bitmap.Config.ARGB_8888, true);
+        bwl2Mothership2 = resizeBitmap(bwl2Mothership2,200,100);
+
+        l2mothership3 = BitmapFactory.decodeResource(context.getResources(),R.drawable.l2mothership3);
+        bwl2Mothership3=l2mothership3.copy(Bitmap.Config.ARGB_8888, true);
+        bwl2Mothership3 = resizeBitmap(bwl2Mothership3,200,100);
+
+        l2mothership4 = BitmapFactory.decodeResource(context.getResources(),R.drawable.l2mothership4);
+        bwl2Mothership4=l2mothership4.copy(Bitmap.Config.ARGB_8888, true);
+        bwl2Mothership4 = resizeBitmap(bwl2Mothership4,200,100);
+
+        l2mothership5 = BitmapFactory.decodeResource(context.getResources(),R.drawable.l2mothership5);
+        bwl2Mothership5=l2mothership5.copy(Bitmap.Config.ARGB_8888, true);
+        bwl2Mothership5 = resizeBitmap(bwl2Mothership5,200,100);
 
         eshot = BitmapFactory.decodeResource(context.getResources(),R.drawable.eshot);
         bwEshot=eshot.copy(Bitmap.Config.ARGB_8888, true);
@@ -1430,19 +1460,19 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             canvas.drawBitmap(bwPlayer, singlePlayerGame.x, singlePlayerGame.y, null);
 
             if(msh >= 20) {
-                canvas.drawBitmap(bwMothership, msx, msy, null);
+                canvas.drawBitmap(bwl2Mothership, msx, msy, null);
             }
             else if(msh >= 15 && msh < 20) {
-                canvas.drawBitmap(bwMothership2, msx, msy, null);
+                canvas.drawBitmap(bwl2Mothership2, msx, msy, null);
             }
             else if(msh >= 10 && msh < 15) {
-                canvas.drawBitmap(bwMothership3, msx, msy, null);
+                canvas.drawBitmap(bwl2Mothership3, msx, msy, null);
             }
             else if(msh >= 5 && msh < 10) {
-                canvas.drawBitmap(bwMothership4, msx, msy, null);
+                canvas.drawBitmap(bwl2Mothership4, msx, msy, null);
             }
             else if(msh > 0 && msh < 5) {
-                canvas.drawBitmap(bwMothership5, msx, msy, null);
+                canvas.drawBitmap(bwl2Mothership5, msx, msy, null);
             }
             if(msh > 0) {
                 if (!eshot1 && esy2 > msyc + 300 && esy3 > msyc + 300 && esy4 > msyc + 300) {
