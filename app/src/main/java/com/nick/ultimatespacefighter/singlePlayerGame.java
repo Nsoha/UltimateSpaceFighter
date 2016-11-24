@@ -1657,7 +1657,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 msh = -1;
 
                 Intent intent = new Intent(context, End.class);
-              //  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("int", score);
                 context.startActivity(intent);
 
