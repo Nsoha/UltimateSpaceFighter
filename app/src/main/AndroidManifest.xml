@@ -22,8 +22,11 @@
         <activity
             android:name=".singlePlayerGame"
             android:screenOrientation="portrait" />
-        <activity android:name=".doublePlayer" />
-        <activity android:name=".End"></activity>
+        <activity android:name=".doublePlayer"
+        android:screenOrientation="portrait"/>
+        <activity android:name=".End"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
