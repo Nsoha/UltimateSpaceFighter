@@ -1,6 +1,7 @@
 package com.nick.ultimatespacefighter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 
 public class singlePlayerGame extends AppCompatActivity implements SensorEventListener{
@@ -46,8 +48,8 @@ public class singlePlayerGame extends AppCompatActivity implements SensorEventLi
             y += (int) Math.pow(sensorEvent.values[1], 1);
 
         }
-
     }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -1623,6 +1625,12 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 canvas.drawBitmap(bwBoom, msx + 50, msy, null);
                 score += 200;
                 msh = -1;
+
+                Intent intent = new Intent(context, End.class);
+              //  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("int", score);
+                context.startActivity(intent);
+
             }
 
             esy1 +=20;
@@ -1717,5 +1725,6 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
 
 
     }
+
 
 }

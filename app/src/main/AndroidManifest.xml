@@ -23,7 +23,8 @@
         <activity
             android:name=".singlePlayerGame"
             android:screenOrientation="portrait" />
-        <activity android:name=".doublePlayer"></activity>
+        <activity android:name=".doublePlayer" />
+        <activity android:name=".End"></activity>
     </application>
 
 </manifest>

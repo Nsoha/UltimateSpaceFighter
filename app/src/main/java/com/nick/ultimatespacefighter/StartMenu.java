@@ -1,5 +1,6 @@
 package com.nick.ultimatespacefighter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ public class StartMenu extends AppCompatActivity {
     }
 
 
-
-
-
+    public void exit(View v) {
+        System.exit(0);
+    }
 }
