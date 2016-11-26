@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nick.ultimatespacefighter">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +16,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -22,12 +26,14 @@
         <activity
             android:name=".singlePlayerGame"
             android:screenOrientation="portrait" />
-        <activity android:name=".doublePlayer"
-        android:screenOrientation="portrait"/>
-        <activity android:name=".End"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity
+            android:name=".doublePlayer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".End"
+            android:screenOrientation="portrait" />
+        <activity android:name=".doublePlayerTwo" />
+        <activity android:name=".doublePlayerOne"></activity>
     </application>
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
 </manifest>
