@@ -43,8 +43,7 @@ public class doublePlayerTwo extends ActionBarActivity {
             return;
         }
 
-        //generate UUID on web: http://www.famkruithof.net/uuid/uuidgen
-        //have to match the UUID on the another device of the BT connection
+
         myUUID = UUID.fromString("ec79da00-853f-11e4-b4a9-0800200c9a66");
         myName = myUUID.toString();
 
@@ -66,7 +65,7 @@ public class doublePlayerTwo extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-        //Turn ON BlueTooth if it is OFF
+
         if (!bluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
@@ -119,7 +118,7 @@ public class doublePlayerTwo extends ActionBarActivity {
                         + "bluetoothServerSocket :\n"
                         + bluetoothServerSocket);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
             }
         }
@@ -138,7 +137,7 @@ public class doublePlayerTwo extends ActionBarActivity {
                             remoteDevice.getName() + "\n" +
                             remoteDevice.getAddress();
 
-                    //connected
+
                     runOnUiThread(new Runnable(){
 
                         @Override
@@ -147,7 +146,7 @@ public class doublePlayerTwo extends ActionBarActivity {
                         }});
 
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+
                     e.printStackTrace();
 
                     final String eMessage = e.getMessage();
@@ -177,7 +176,7 @@ public class doublePlayerTwo extends ActionBarActivity {
             try {
                 bluetoothServerSocket.close();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
             }
         }

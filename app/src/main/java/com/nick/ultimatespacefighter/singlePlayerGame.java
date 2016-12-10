@@ -12,6 +12,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -20,6 +23,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+
+import static android.media.AudioManager.STREAM_MUSIC;
+import static com.nick.ultimatespacefighter.R.raw.bk;
 
 
 public class singlePlayerGame extends AppCompatActivity implements SensorEventListener{
@@ -35,7 +41,6 @@ public class singlePlayerGame extends AppCompatActivity implements SensorEventLi
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_GAME);
-
     }
 
 
@@ -55,10 +60,12 @@ public class singlePlayerGame extends AppCompatActivity implements SensorEventLi
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
+
 }
 
 class CustomView extends SurfaceView implements SurfaceHolder.Callback{
 
+    SoundPool sounds;
     public long startTime;
     protected Context context;
     private Bitmap enemy;
@@ -149,9 +156,18 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
     int msh = 25;
     int lvl;
     long t1;
+    int st;
+    int dmg;
+    int bm;
+
     public CustomView(Context ctx, AttributeSet attrs) {
         super(ctx,attrs);
         context = ctx;
+
+        sounds = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        st = sounds.load(context, R.raw.st,1);
+        dmg = sounds.load(context, R.raw.dmg,1);
+        bm = sounds.load(context, R.raw.bm,1);
 
         enemy = BitmapFactory.decodeResource(context.getResources(),R.drawable.enemy);
         bwEnemy=enemy.copy(Bitmap.Config.ARGB_8888, true);
@@ -456,6 +472,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision < 75) {
                 canvas.drawBitmap(bwBoom, ex, ey, null);
                 canvas.drawBitmap(bwBoom, ex2, ey2, null);
+                if(ey > 0 || ey2 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey = -200;
                 ex = (int) (Math.random() * canvas.getWidth());
                 ey2 = -300;
@@ -466,25 +485,34 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision2 < 75) {
                 canvas.drawBitmap(bwBoom, ex, ey, null);
                 canvas.drawBitmap(bwBoom, ex3, ey3, null);
+                if(ey > 0 || ey3 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey = -200;
                 ex = (int) (Math.random() * canvas.getWidth());
                 ey3 = -200;
                 ex3 = (int) (Math.random() * canvas.getWidth());
-
             }
             double Ecollision3 = Math.sqrt((exc2 - exc3) * (exc2 - exc3) + (eyc2 - eyc3) * (eyc2 - eyc3));
             if (Ecollision3 < 75) {
                 canvas.drawBitmap(bwBoom, ex3, ey3, null);
                 canvas.drawBitmap(bwBoom, ex2, ey2, null);
+                if(ey2 > 0 || ey3 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey3 = -200;
                 ex3 = (int) (Math.random() * canvas.getWidth());
                 ey2 = -300;
                 ex2 = (int) (Math.random() * canvas.getWidth());
+
             }
             double Ecollision4 = Math.sqrt((exc4 - exc) * (exc4 - exc) + (eyc4 - eyc) * (eyc4 - eyc));
             if (Ecollision4 < 75) {
                 canvas.drawBitmap(bwBoom, ex, ey, null);
                 canvas.drawBitmap(bwBoom, ex4, ey4, null);
+                if(ey > 0 || ey4 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey = -200;
                 ex = (int) (Math.random() * canvas.getWidth());
                 ey4 = -300;
@@ -494,6 +522,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision5 < 75) {
                 canvas.drawBitmap(bwBoom, ex2, ey2, null);
                 canvas.drawBitmap(bwBoom, ex4, ey4, null);
+                if(ey2 > 0 || ey4 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey2 = -200;
                 ex2 = (int) (Math.random() * canvas.getWidth());
                 ey4 = -300;
@@ -503,6 +534,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision6 < 75) {
                 canvas.drawBitmap(bwBoom, ex3, ey3, null);
                 canvas.drawBitmap(bwBoom, ex4, ey4, null);
+                if(ey3 > 0 || ey4 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey3 = -200;
                 ex3 = (int) (Math.random() * canvas.getWidth());
                 ey4 = -300;
@@ -512,6 +546,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision7 < 75) {
                 canvas.drawBitmap(bwBoom, ex, ey, null);
                 canvas.drawBitmap(bwBoom, ex5, ey5, null);
+                if(ey > 0 || ey5 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey = -200;
                 ex = (int) (Math.random() * canvas.getWidth());
                 ey5 = -300;
@@ -521,6 +558,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision8 < 75) {
                 canvas.drawBitmap(bwBoom, ex2, ey2, null);
                 canvas.drawBitmap(bwBoom, ex5, ey5, null);
+                if(ey2 > 0 || ey5 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey2 = -200;
                 ex2 = (int) (Math.random() * canvas.getWidth());
                 ey5 = -300;
@@ -530,6 +570,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision9 < 75) {
                 canvas.drawBitmap(bwBoom, ex3, ey3, null);
                 canvas.drawBitmap(bwBoom, ex5, ey5, null);
+                if(ey3 > 0 || ey5 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey3 = -200;
                 ex3 = (int) (Math.random() * canvas.getWidth());
                 ey5 = -300;
@@ -539,6 +582,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision10 < 75) {
                 canvas.drawBitmap(bwBoom, ex4, ey4, null);
                 canvas.drawBitmap(bwBoom, ex5, ey5, null);
+                if(ey4 > 0 || ey5 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey4 = -200;
                 ex4 = (int) (Math.random() * canvas.getWidth());
                 ey5 = -300;
@@ -548,6 +594,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision11 < 75) {
                 canvas.drawBitmap(bwBoom, ex6, ey6, null);
                 canvas.drawBitmap(bwBoom, ex, ey, null);
+                if(ey > 0 || ey6 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey = -200;
                 ex = (int) (Math.random() * canvas.getWidth());
                 ey6 = -200;
@@ -557,6 +606,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision12 < 75) {
                 canvas.drawBitmap(bwBoom, ex6, ey6, null);
                 canvas.drawBitmap(bwBoom, ex2, ey2, null);
+                if(ey2 > 0 || ey6 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey2 = -300;
                 ex2 = (int) (Math.random() * canvas.getWidth());
                 ey6 = -200;
@@ -566,6 +618,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision13 < 75) {
                 canvas.drawBitmap(bwBoom, ex6, ey6, null);
                 canvas.drawBitmap(bwBoom, ex3, ey3, null);
+                if(ey3 > 0 || ey6 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey3 = -200;
                 ex3 = (int) (Math.random() * canvas.getWidth());
                 ey6 = -200;
@@ -575,6 +630,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision14 < 75) {
                 canvas.drawBitmap(bwBoom, ex6, ey6, null);
                 canvas.drawBitmap(bwBoom, ex4, ey4, null);
+                if(ey4 > 0 || ey6 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey4 = -200;
                 ex4 = (int) (Math.random() * canvas.getWidth());
                 ey6 = -200;
@@ -584,6 +642,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             if (Ecollision15 < 75) {
                 canvas.drawBitmap(bwBoom, ex6, ey6, null);
                 canvas.drawBitmap(bwBoom, ex5, ey5, null);
+                if(ey5 > 0 || ey6 > 0) {
+                    sounds.play(bm, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 ey5 = -200;
                 ex5 = (int) (Math.random() * canvas.getWidth());
                 ey6 = -200;
@@ -598,6 +659,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 score -= 5;
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision2 = Math.sqrt((pxc - exc2) * (pxc - exc2) + (pyc - eyc2) * (pyc - eyc2));
             if (collision2 < 75) {
@@ -607,6 +669,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 score -= 5;
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision3 = Math.sqrt((pxc - exc3) * (pxc - exc3) + (pyc - eyc3) * (pyc - eyc3));
             if (collision3 < 75) {
@@ -616,6 +679,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 score -= 5;
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision4 = Math.sqrt((pxc - exc4) * (pxc - exc4) + (pyc - eyc4) * (pyc - eyc4));
             if (collision4 < 75) {
@@ -625,6 +689,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 score -= 5;
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision5 = Math.sqrt((pxc - exc5) * (pxc - exc5) + (pyc - eyc5) * (pyc - eyc5));
             if (collision5 < 75) {
@@ -634,6 +699,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 score -= 5;
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision6 = Math.sqrt((pxc - exc6) * (pxc - exc6) + (pyc - eyc6) * (pyc - eyc6));
             if (collision6 < 75) {
@@ -643,6 +709,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 score -= 3;
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
 
             if (shot1) {
@@ -659,6 +726,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey = -100;
                     shot1 = false;
                     score += 3;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance2 = Math.sqrt((sx - exc2) * (sx - exc2) + (sy - eyc2) * (sy - eyc2));
                 if (distance2 < 50) {
@@ -667,6 +735,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey2 = -300;
                     shot1 = false;
                     score += 5;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance3 = Math.sqrt((sx - exc3) * (sx - exc3) + (sy - eyc3) * (sy - eyc3));
                 if (distance3 < 50) {
@@ -675,6 +744,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey3 = -100;
                     shot1 = false;
                     score += 10;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance4 = Math.sqrt((sx - exc4) * (sx - exc4) + (sy - eyc4) * (sy - eyc4));
                 if (distance4 < 50) {
@@ -683,6 +753,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey4 = -100;
                     shot1 = false;
                     score += 10;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance5 = Math.sqrt((sx - exc5) * (sx - exc5) + (sy - eyc5) * (sy - eyc5));
                 if (distance5 < 50) {
@@ -691,6 +762,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey5 = -300;
                     shot1 = false;
                     score += 5;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance6 = Math.sqrt((sx - exc6) * (sx - exc6) + (sy - eyc6) * (sy - eyc6));
                 if (distance6 < 50) {
@@ -699,6 +771,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey6 = -200;
                     shot1 = false;
                     score += 3;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
 
             }
@@ -716,6 +789,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey = -100;
                     shot2 = false;
                     score += 3;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance2 = Math.sqrt((sx2 - exc2) * (sx2 - exc2) + (sy2 - eyc2) * (sy2 - eyc2));
                 if (distance2 < 50) {
@@ -724,6 +798,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey2 = -300;
                     shot2 = false;
                     score += 5;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance3 = Math.sqrt((sx2 - exc3) * (sx2 - exc3) + (sy2 - eyc3) * (sy2 - eyc3));
                 if (distance3 < 50) {
@@ -732,6 +807,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey3 = -100;
                     shot2 = false;
                     score += 10;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance4 = Math.sqrt((sx2 - exc4) * (sx2 - exc4) + (sy2 - eyc4) * (sy2 - eyc4));
                 if (distance4 < 50) {
@@ -740,6 +816,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey4 = -100;
                     shot2 = false;
                     score += 10;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance5 = Math.sqrt((sx2 - exc5) * (sx2 - exc5) + (sy2 - eyc5) * (sy2 - eyc5));
                 if (distance5 < 50) {
@@ -748,6 +825,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey5 = -100;
                     shot1 = false;
                     score += 5;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance6 = Math.sqrt((sx2 - exc6) * (sx2 - exc6) + (sy2 - eyc6) * (sy2 - eyc6));
                 if (distance6 < 50) {
@@ -756,6 +834,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     ey6 = -200;
                     shot2 = false;
                     score += 3;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
 
             }
@@ -883,9 +962,11 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex = 0;
                 ey2 = -300;
                 ex2 = 0;
+                if(e1 || e2){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e1=false;
                 e2=false;
-
             }
             double Ecollision2 = Math.sqrt((exc3 - exc) * (exc3 - exc) + (eyc3 - eyc) * (eyc3 - eyc));
             if (Ecollision2 < 75) {
@@ -895,6 +976,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex = 0;
                 ey3 = -200;
                 ex3 = 0;
+                if(e1 || e3){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e1=false;
                 e3=false;
 
@@ -907,6 +991,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex3 = 0;
                 ey2 = -300;
                 ex2 = 0;
+                if(e2 || e3){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e3=false;
                 e2=false;
             }
@@ -918,8 +1005,12 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex = 0;
                 ey4 = -300;
                 ex4 = 0;
+                if(e1 || e4){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e1=false;
                 e4=false;
+
             }
             double Ecollision5 = Math.sqrt((exc4 - exc2) * (exc4 - exc2) + (eyc4 - eyc2) * (eyc4 - eyc2));
             if (Ecollision5 < 75) {
@@ -929,8 +1020,12 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex2 = 0;
                 ey4 = -300;
                 ex4 = 0;
+                if(e2 || e4){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e2=false;
                 e4=false;
+
             }
             double Ecollision6 = Math.sqrt((exc4 - exc3) * (exc4 - exc3) + (eyc4 - eyc3) * (eyc4 - eyc3));
             if (Ecollision6 < 75) {
@@ -940,8 +1035,12 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex3 = 0;
                 ey4 = -300;
                 ex4 = 0;
+                if(e3 || e4){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e3=false;
                 e4=false;
+
             }
             double Ecollision7 = Math.sqrt((exc5 - exc) * (exc5 - exc) + (eyc5 - eyc) * (eyc5 - eyc));
             if (Ecollision7 < 75) {
@@ -951,8 +1050,12 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex = 0;
                 ey5 = -300;
                 ex5 = 0;
+                if(e1 || e5){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e1=false;
                 e5=false;
+
             }
             double Ecollision8 = Math.sqrt((exc5 - exc2) * (exc5 - exc2) + (eyc5 - eyc2) * (eyc5 - eyc2));
             if (Ecollision8 < 75) {
@@ -962,6 +1065,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex2 = 0;
                 ey5 = -300;
                 ex5 = 0;
+                if(e2 || e5){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e2=false;
                 e5=false;
             }
@@ -973,8 +1079,12 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex3 = 0;
                 ey5 = -300;
                 ex5 = 0;
+                if(e3 || e5){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e3=false;
                 e5=false;
+
             }
             double Ecollision10 = Math.sqrt((exc5 - exc4) * (exc5 - exc4) + (eyc5 - eyc4) * (eyc5 - eyc4));
             if (Ecollision10 < 75) {
@@ -984,6 +1094,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex4 = 0;
                 ey5 = -300;
                 ex5 = 0;
+                if(e4 || e5){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e4=false;
                 e5=false;
             }
@@ -995,6 +1108,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex = 0;
                 ey6 = -200;
                 ex6 = 0;
+                if(e1 || e6){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e1=false;
                 e6=false;
             }
@@ -1006,6 +1122,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex2 = 0;
                 ey6 = -200;
                 ex6 = 0;
+                if(e2 || e6){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e2=false;
                 e6=false;
             }
@@ -1017,6 +1136,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex3 = 0;
                 ey6 = -200;
                 ex6 = 0;
+                if(e3 || e6){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e3=false;
                 e6=false;
             }
@@ -1028,6 +1150,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex4 = 0;
                 ey6 = -200;
                 ex6 = 0;
+                if(e4 || e6){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e4=false;
                 e6=false;
             }
@@ -1039,6 +1164,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 ex5 = 0;
                 ey6 = -200;
                 ex6 = 0;
+                if(e5 || e6){
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                }
                 e5=false;
                 e6=false;
             }
@@ -1052,6 +1180,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
                 e1=false;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision2 = Math.sqrt((pxc - exc2) * (pxc - exc2) + (pyc - eyc2) * (pyc - eyc2));
             if (collision2 < 75) {
@@ -1062,6 +1191,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
                 e2=false;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision3 = Math.sqrt((pxc - exc3) * (pxc - exc3) + (pyc - eyc3) * (pyc - eyc3));
             if (collision3 < 75) {
@@ -1072,6 +1202,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
                 e3=false;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision4 = Math.sqrt((pxc - exc4) * (pxc - exc4) + (pyc - eyc4) * (pyc - eyc4));
             if (collision4 < 75) {
@@ -1082,6 +1213,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
                 e4=false;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision5 = Math.sqrt((pxc - exc5) * (pxc - exc5) + (pyc - eyc5) * (pyc - eyc5));
             if (collision5 < 75) {
@@ -1092,6 +1224,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
                 e5=false;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
             double collision6 = Math.sqrt((pxc - exc6) * (pxc - exc6) + (pyc - eyc6) * (pyc - eyc6));
             if (collision6 < 75) {
@@ -1102,6 +1235,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 canvas.drawBitmap(bwPlayerdmg, singlePlayerGame.x, singlePlayerGame.y, null);
                 plyrdmg = true;
                 e6=false;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
             }
 
             if (shot1) {
@@ -1119,6 +1253,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot1 = false;
                     score += 3;
                     e1=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance2 = Math.sqrt((sx - exc2) * (sx - exc2) + (sy - eyc2) * (sy - eyc2));
                 if (distance2 < 50) {
@@ -1128,6 +1263,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot1 = false;
                     score += 5;
                     e2=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance3 = Math.sqrt((sx - exc3) * (sx - exc3) + (sy - eyc3) * (sy - eyc3));
                 if (distance3 < 50) {
@@ -1137,6 +1273,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot1 = false;
                     score += 10;
                     e3=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance4 = Math.sqrt((sx - exc4) * (sx - exc4) + (sy - eyc4) * (sy - eyc4));
                 if (distance4 < 50) {
@@ -1146,6 +1283,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot1 = false;
                     score += 10;
                     e4=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance5 = Math.sqrt((sx - exc5) * (sx - exc5) + (sy - eyc5) * (sy - eyc5));
                 if (distance5 < 50) {
@@ -1155,6 +1293,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot1 = false;
                     score += 5;
                     e5=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance6 = Math.sqrt((sx - exc6) * (sx - exc6) + (sy - eyc6) * (sy - eyc6));
                 if (distance6 < 50) {
@@ -1164,6 +1303,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot1 = false;
                     score += 3;
                     e6=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
 
             }
@@ -1182,6 +1322,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot2 = false;
                     score += 3;
                     e1=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance2 = Math.sqrt((sx2 - exc2) * (sx2 - exc2) + (sy2 - eyc2) * (sy2 - eyc2));
                 if (distance2 < 50) {
@@ -1191,6 +1332,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot2 = false;
                     score += 5;
                     e2=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance3 = Math.sqrt((sx2 - exc3) * (sx2 - exc3) + (sy2 - eyc3) * (sy2 - eyc3));
                 if (distance3 < 50) {
@@ -1200,6 +1342,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot2 = false;
                     score += 10;
                     e3=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance4 = Math.sqrt((sx2 - exc4) * (sx2 - exc4) + (sy2 - eyc4) * (sy2 - eyc4));
                 if (distance4 < 50) {
@@ -1209,6 +1352,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot2 = false;
                     score += 10;
                     e4=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance5 = Math.sqrt((sx2 - exc5) * (sx2 - exc5) + (sy2 - eyc5) * (sy2 - eyc5));
                 if (distance5 < 50) {
@@ -1218,6 +1362,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot1 = false;
                     score += 5;
                     e5=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
                 double distance6 = Math.sqrt((sx2 - exc6) * (sx2 - exc6) + (sy2 - eyc6) * (sy2 - eyc6));
                 if (distance6 < 50) {
@@ -1227,6 +1372,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                     shot2 = false;
                     score += 3;
                     e6=false;
+                    sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 }
 
             }
@@ -1377,6 +1523,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 if (distance < 75) {
                     shot1 = false;
                     msh--;
+                    sounds.play(dmg,1.0f, 1.0f, 0, 0, 1.5f);
                 }
 
             }
@@ -1391,6 +1538,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 if (distance < 75) {
                     shot2 = false;
                     msh--;
+                    sounds.play(dmg,1.0f, 1.0f, 0, 0, 1.5f);
                 }
 
             }
@@ -1406,11 +1554,12 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 e6 = true;
                 msy = -150;
                 lvl = 2;
-                msh = 30;
+                msh = 25;
                 eshot1 = false;
                 eshot2 = false;
                 eshot3 = false;
                 eshot4 = false;
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
 
             }
 
@@ -1633,6 +1782,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 if (distance < 75) {
                     shot1 = false;
                     msh--;
+                    sounds.play(dmg,1.0f, 1.0f, 0, 0, 1.5f);
                 }
 
             }
@@ -1647,6 +1797,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 if (distance < 75) {
                     shot2 = false;
                     msh--;
+                    sounds.play(dmg,1.0f, 1.0f, 0, 0, 1.5f);
                 }
 
             }
@@ -1655,7 +1806,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 canvas.drawBitmap(bwBoom, msx + 50, msy, null);
                 score += 200;
                 msh = -1;
-
+                sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
                 Intent intent = new Intent(context, End.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("int", score);
@@ -1685,7 +1836,9 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
 
         if(plyrdmg){
             canvas.drawBitmap(bwPlayerdmg,singlePlayerGame.x,singlePlayerGame.y,null);
+            sounds.play(dmg,1.0f, 1.0f, 0, 0, 1.5f);
         }
+
     }
 
 
@@ -1701,6 +1854,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             sx = singlePlayerGame.x + 40;
             shot1 = true;
             score--;
+            sounds.play(st,1.0f, 1.0f, 0, 0, 1.5f);
             return true;
         }
         else if(shot1 && !shot2 && sy < pyc - 500 && sy2 < pyc - 500) {
@@ -1708,6 +1862,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             sx2 = singlePlayerGame.x + 40;
             score--;
             shot2 = true;
+            sounds.play(st,1.0f, 1.0f, 0, 0, 1.5f);
         }
 
         return true;
@@ -1755,6 +1910,5 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
 
 
     }
-
 
 }

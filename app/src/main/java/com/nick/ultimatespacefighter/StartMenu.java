@@ -5,13 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class StartMenu extends AppCompatActivity {
+import static com.nick.ultimatespacefighter.R.raw.bk;
 
+public class StartMenu extends AppCompatActivity {
 
 
     @Override
@@ -25,8 +27,6 @@ public class StartMenu extends AppCompatActivity {
         HighScore.setText(Integer.toString(highScore));
 
 
-
-
     }
 
     public void singlePlayer(View v) {
@@ -38,5 +38,6 @@ public class StartMenu extends AppCompatActivity {
         Intent intent = new Intent(this,doublePlayer.class);
         startActivity(intent);
     }
+
 
 }
