@@ -114,7 +114,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
     private Bitmap bwBoom;
     DrawingThread thread;
     Paint text;
-    int ex,ey,ex2,ey2,ex3,ey3,ex4,ey4,ex5,ey5,ex6,ey6,msx,msy,px,py,sx,sy,sx2,sy2,
+    int ex,ey,ex2,ey2,ex3,ey3,ex4,ey4,ex5,ey5,ex6,ey6,msx,msy,sx,sy,sx2,sy2,
             esx1,esy1,esx2,esy2,esx3,esy3,esx4,esy4,esx1a,esy1a,esx2a,esy2a,esx3a,esy3a,esx4a,esy4a;
     int score;
     boolean shot1 = false;
@@ -128,8 +128,10 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
     boolean eshot3a = false;
     boolean eshot4a = false;
     boolean plyrdmg = false;
+    int bSound = 1;
     int stX[] = new int[30];
     int stY[] = new int[30];
+    int px = 100,py = 900;
     int pyc;
     int pxc;
     int exc;
@@ -159,7 +161,8 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
     int st;
     int dmg;
     int bm;
-
+    int b1;
+    int b2;
     public CustomView(Context ctx, AttributeSet attrs) {
         super(ctx,attrs);
         context = ctx;
@@ -168,6 +171,8 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
         st = sounds.load(context, R.raw.st,1);
         dmg = sounds.load(context, R.raw.dmg,1);
         bm = sounds.load(context, R.raw.bm,1);
+        b1 = sounds.load(context, R.raw.b1,1);
+        b2 = sounds.load(context, R.raw.b2,1);
 
         enemy = BitmapFactory.decodeResource(context.getResources(),R.drawable.enemy);
         bwEnemy=enemy.copy(Bitmap.Config.ARGB_8888, true);
@@ -1379,6 +1384,10 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
 
         }
         else if(timeToGo < 5 && lvl == 1 && (!e1 && !e2 && !e3 && !e4 && !e5 && !e6)) {
+            if(bSound == 1){
+                sounds.play(b1,1.0f, 1.0f, 0, 0, 1.5f);
+                bSound = 2;
+            }
             if (msy < 75) {
                 msy += 5;
             }
@@ -1560,6 +1569,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
                 eshot3 = false;
                 eshot4 = false;
                 sounds.play(bm,1.0f, 1.0f, 0, 0, 1.5f);
+                bSound = 1;
 
             }
 
@@ -1567,9 +1577,14 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             esy2 +=20;
             esy3 +=20;
             esy4 +=20;
+
         }
 
         else if(timeToGo < 5 && lvl == 2 && (!e1 && !e2 && !e3 && !e4 && !e5 && !e6)) {
+            if(bSound == 1){
+                sounds.play(b2,1.0f, 1.0f, 0, 0, 1.5f);
+                bSound = 2;
+            }
             if (msy < 75) {
                 msy += 5;
             }
@@ -1822,6 +1837,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
             esy2a +=20;
             esy3a +=20;
             esy4a +=20;
+
         }
 
         for(int i = 0; i< stX.length; i++ ) {
