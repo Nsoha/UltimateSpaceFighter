@@ -33,7 +33,9 @@
             android:name=".End"
             android:screenOrientation="portrait" />
         <activity android:name=".doublePlayerTwo" />
-        <activity android:name=".doublePlayerOne"></activity>
+        <activity android:name=".doublePlayerOne"
+            android:screenOrientation="portrait">
+    </activity>
     </application>
 
 </manifest>

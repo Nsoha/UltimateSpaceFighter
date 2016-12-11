@@ -143,6 +143,10 @@ public class doublePlayerTwo extends ActionBarActivity {
                         @Override
                         public void run() {
                             textStatus.setText(strConnected);
+
+
+
+
                         }});
 
                 } catch (IOException e) {

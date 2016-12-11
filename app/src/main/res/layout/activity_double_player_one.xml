@@ -26,6 +26,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <com.nick.ultimatespacefighter.CustomView2
+        android:id="@+id/canvas"
+        android:layout_width="600px"
+        android:layout_height="1000px"
+        android:layout_centerInParent="true" />
+
     <ListView
         android:id="@+id/pairedlist"
         android:layout_width="match_parent"
