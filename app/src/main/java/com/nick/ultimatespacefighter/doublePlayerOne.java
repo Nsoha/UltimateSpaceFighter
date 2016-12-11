@@ -41,7 +41,7 @@ package com.nick.ultimatespacefighter;
         import android.widget.TextView;
         import android.widget.Toast;
 
-public class doublePlayerOne extends AppCompatActivity implements SensorEventListener {
+public class doublePlayerOne extends ActionBarActivity implements SensorEventListener {
     SensorManager senSensorManager;
     Sensor senAccelerometer;
     public static int x,y;
