@@ -235,6 +235,8 @@ public class doublePlayerOne extends ActionBarActivity implements SensorEventLis
 
                     @Override
                     public void run() {
+
+
                         class CustomView2 extends SurfaceView implements SurfaceHolder.Callback{
 
                             SoundPool sounds;
@@ -2106,7 +2108,8 @@ public class doublePlayerOne extends ActionBarActivity implements SensorEventLis
 
 
                     }});
-            }else{
+            }
+            else{
 
             }
         }
