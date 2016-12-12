@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_double_player"
     android:layout_width="match_parent"
@@ -12,28 +13,53 @@
     android:background="@android:color/background_dark">
 
     <Button
-        android:text="Seek Others"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button5"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_alignBaseline="@+id/button4"
-        android:layout_alignBottom="@+id/button4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="scan" />
-
-    <Button
         android:text="Become Discoverable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button4"
-        android:layout_marginBottom="201dp"
+        android:onClick="recieve"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/button5"
-        android:layout_toEndOf="@+id/button5"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:onClick="recieve" />
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        app:srcCompat="@drawable/player"
+        android:id="@+id/imageView12"
+        android:layout_above="@+id/button5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="36dp" />
+
+    <ImageView
+        android:layout_height="50sp"
+        app:srcCompat="@drawable/player2"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/imageView13"
+        android:layout_width="50sp"
+        android:layout_above="@+id/button4"
+        android:layout_alignLeft="@+id/imageView12"
+        android:layout_alignStart="@+id/imageView12" />
+
+    <Button
+        android:text="Seek Others"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:onClick="scan"
+        android:layout_above="@+id/imageView13"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" />
+
+    <TextView
+        android:text="Devices must be previously paired to connect, if your devices are not paired, please go to the bluetooth settings and pair your devices before proceeding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="?android:attr/colorBackground"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textStyle="normal|bold" />
 </RelativeLayout>
