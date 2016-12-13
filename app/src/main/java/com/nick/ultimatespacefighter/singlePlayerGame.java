@@ -2,6 +2,7 @@ package com.nick.ultimatespacefighter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,7 +14,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,10 +22,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-
-import static android.media.AudioManager.STREAM_MUSIC;
-import static com.nick.ultimatespacefighter.R.raw.bk;
 
 
 public class singlePlayerGame extends AppCompatActivity implements SensorEventListener{
@@ -33,14 +29,15 @@ public class singlePlayerGame extends AppCompatActivity implements SensorEventLi
     private Sensor senAccelerometer;
     public static int x,y;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_player_game);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_GAME);
+
     }
 
 
@@ -49,8 +46,8 @@ public class singlePlayerGame extends AppCompatActivity implements SensorEventLi
         Sensor mySensor = sensorEvent.sensor;
 
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            x -= (int) Math.pow(sensorEvent.values[0], 1);
-            y += (int) Math.pow(sensorEvent.values[1], 1);
+                x -= (int) Math.pow(sensorEvent.values[0], 1);
+                y += (int) Math.pow(sensorEvent.values[1], 1);
 
         }
     }
@@ -163,6 +160,7 @@ class CustomView extends SurfaceView implements SurfaceHolder.Callback{
     int bm;
     int b1;
     int b2;
+
     public CustomView(Context ctx, AttributeSet attrs) {
         super(ctx,attrs);
         context = ctx;

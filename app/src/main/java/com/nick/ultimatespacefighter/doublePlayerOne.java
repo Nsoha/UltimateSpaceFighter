@@ -209,7 +209,8 @@ public class doublePlayerOne extends ActionBarActivity implements SensorEventLis
             boolean success = false;
             try {
                 bluetoothSocket.connect();
-                success = true;
+                    success = true;
+
             } catch (IOException e) {
                 e.printStackTrace();
 
@@ -236,7 +237,7 @@ public class doublePlayerOne extends ActionBarActivity implements SensorEventLis
                     @Override
                     public void run() {
 
-
+/*
                         class CustomView2 extends SurfaceView implements SurfaceHolder.Callback{
 
                             SoundPool sounds;
@@ -2106,7 +2107,7 @@ public class doublePlayerOne extends ActionBarActivity implements SensorEventLis
 
                         }
 
-
+*/
                     }});
             }
             else{
